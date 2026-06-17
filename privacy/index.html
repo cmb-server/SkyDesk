@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkyDesk — Privacy Policy</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0;
+      padding: 40px 20px 80px;
+      background: #060d08;
+      color: #cfe9d6;
+      font: 15px/1.65 -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    main { max-width: 720px; margin: 0 auto; }
+    h1 { color: #7dffa6; font-size: 26px; margin-bottom: 4px; }
+    h2 { color: #7dffa6; font-size: 18px; margin-top: 32px; }
+    .date { color: #6f9a7c; font-size: 13px; margin-top: 0; }
+    a { color: #7dffa6; }
+    code { background: #0e1c12; padding: 1px 5px; border-radius: 4px; color: #b8ffc8; }
+    strong { color: #eafff0; }
+    ul { padding-left: 22px; }
+    li { margin: 4px 0; }
+    .notice { background: #0e1c12; border: 1px solid #1a3a24; padding: 12px 14px; border-radius: 6px; font-size: 14px; margin: 16px 0; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>SkyDesk — Privacy Policy</h1>
+    <p class="date">Last updated: June 16, 2026</p>
+
+    <p class="notice">
+      <strong>Not for flight planning, navigation, or operational use.</strong> SkyDesk is for
+      entertainment and plane spotting only.
+    </p>
+
+    <p>
+      SkyDesk draws a live, ATC-style flight radar on your pages. We designed it
+      to keep your data on your own device. <strong>We do not sell your personal
+      information, and we do not use analytics or ad tracking in the extension.</strong>
+      See also our <a href="../terms/">Terms of Service</a>.
+    </p>
+
+    <h2>What SkyDesk stores</h2>
+    <p>
+      SkyDesk saves only your <strong>preferences</strong> using Chrome extension
+      storage, which may sync across devices signed in to your browser profile:
+    </p>
+    <ul>
+      <li><code>chrome.storage.sync</code> — radar center, display mode, colors,
+        opacity, range, layers, widget position/size, and similar settings.</li>
+      <li><code>chrome.storage.local</code> — cached ADS-B feed snapshot
+        (<code>sk_feed_cache</code>, ~60-second TTL); shift+click selected aircraft
+        (<code>sk_selected_aircraft</code>, ~10-minute TTL); flight-tracker trail
+        points (up to 800 points, retained up to 6 hours); subscription/trial cache
+        (<code>skEntitlementCache</code>, may include email from ExtensionPay); local
+        trial start (<code>skLocalTrialStartedAt</code>).</li>
+    </ul>
+    <p>
+      This data stays in your browser profile. SkyDesk has no backend servers and
+      never receives a copy of your preferences.
+    </p>
+
+    <h2>Location</h2>
+    <p>
+      The <strong>"Use my location"</strong> button uses your browser's geolocation
+      API only when you click it. Coordinates are used locally to center the radar
+      and may be saved as a preference. They are never sent to us.
+    </p>
+
+    <h2>Network requests to third parties</h2>
+    <p>
+      To show live data, SkyDesk requests information directly from third-party
+      aviation and map providers from your browser. Requests typically include the
+      radar center or map area, and — when you look one up — a flight number. We do
+      not operate these services; their privacy policies apply:
+    </p>
+    <ul>
+      <li><strong>adsb.lol</strong>, <strong>adsb.fi</strong>, <strong>airplanes.live</strong>, and <strong>OpenSky Network</strong> — live aircraft positions.</li>
+      <li><strong>hexdb.io</strong> — flight route lookups (fallback).</li>
+      <li><strong>OurAirports</strong> (via raw.githubusercontent.com) — airport and runway data.</li>
+      <li><strong>OpenStreetMap / Overpass</strong> — airport terminal footprints.</li>
+      <li><strong>FAA Aviation Weather Center</strong> — airport metadata.</li>
+      <li><strong>RainViewer</strong> — weather-radar map tiles.</li>
+      <li><strong>Esri ArcGIS Online</strong> — terrain-relief map tiles.</li>
+    </ul>
+
+    <h2>Subscriptions and payments</h2>
+    <p>
+      SkyDesk offers an optional subscription ($2.99/month or $24/year) after a
+      7-day free trial. Payments are processed by <strong>ExtensionPay</strong>
+      using <strong>Stripe</strong>. When you subscribe or start a trial, ExtensionPay
+      collects your email address and payment details on their secure checkout pages.
+      SkyDesk does not handle card numbers directly. ExtensionPay stores payment
+      information in Stripe; see
+      <a href="https://extensionpay.com/terms">ExtensionPay terms</a> and
+      <a href="https://stripe.com/privacy">Stripe privacy</a>.
+    </p>
+    <p>
+      The extension checks your subscription status with ExtensionPay to enable
+      advanced features (flight tracking, map layers, ground mode, and similar).
+      Status may be cached locally in <code>skEntitlementCache</code>.
+      We do not use your email for marketing unless you opt in elsewhere.
+    </p>
+
+    <h2>Permissions</h2>
+    <ul>
+      <li><code>storage</code> — save preferences locally (above).</li>
+      <li><code>tabs</code> — open the full radar tab, legal pages, and apply settings to open pages.</li>
+      <li>Host access to the data providers listed above — fetch radar, route, weather, and airport data.</li>
+    </ul>
+    <p>
+      SkyDesk's content script renders the radar on pages you visit but
+      <strong>does not</strong> read page content, form data, or browsing history.
+    </p>
+
+    <h2>Children's privacy</h2>
+    <p>SkyDesk is not directed to children and does not knowingly collect data from anyone.</p>
+
+    <h2>Your data rights</h2>
+    <p>
+      You can clear SkyDesk data anytime via Chrome extension storage or by uninstalling.
+      For subscription or payment data held by ExtensionPay/Stripe, contact them directly
+      or email us and we will assist where we can.
+    </p>
+
+    <h2>Changes</h2>
+    <p>If this policy changes, the updated version will be posted at this URL and the date above will be revised.</p>
+
+    <h2>Contact</h2>
+    <p>Questions or data requests? Email <a href="mailto:skydeskchrome@gmail.com">skydeskchrome@gmail.com</a>.</p>
+  </main>
+</body>
+</html>
