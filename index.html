@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SkyDesk — Legal</title>
+  <title>SkyDesk — Live Flight Radar Chrome Extension</title>
   <style>
     :root { color-scheme: dark; }
     body {
@@ -15,26 +15,66 @@
     }
     main { max-width: 720px; margin: 0 auto; }
     h1 { color: #7dffa6; font-size: 26px; margin-bottom: 4px; }
+    h2 { color: #7dffa6; font-size: 18px; margin-top: 32px; }
     .date { color: #6f9a7c; font-size: 13px; margin-top: 0; }
     a { color: #7dffa6; }
+    strong { color: #eafff0; }
     ul { padding-left: 22px; }
     li { margin: 8px 0; }
     .notice { background: #0e1c12; border: 1px solid #1a3a24; padding: 12px 14px; border-radius: 6px; font-size: 14px; margin: 16px 0; }
+    .price { background: #0e1c12; border: 1px solid #1a3a24; padding: 14px 16px; border-radius: 6px; margin: 16px 0; }
+    .price .amount { color: #eafff0; font-size: 20px; font-weight: 600; }
+    .links { margin-top: 24px; }
   </style>
 </head>
 <body>
   <main>
-    <h1>SkyDesk — Legal</h1>
-    <p class="date">Entertainment and plane spotting only. Not for flight planning, navigation, or operational use.</p>
+    <h1>SkyDesk</h1>
+    <p class="date">Live aircraft / ADS-B flight radar for your browser. Entertainment and plane spotting only — not for flight planning, navigation, or operational use.</p>
 
     <p class="notice">
-      Official legal documents for the SkyDesk browser extension.
+      <strong>SkyDesk</strong> is a Chrome browser extension that shows live aircraft (ADS-B)
+      flight radar right on the page you are viewing. It provides an on-page corner overlay plus a
+      full radar tab, displaying real-time plane blips with callsign, altitude, speed, aircraft type,
+      flight routes (origin/destination), and nearby airport information.
     </p>
 
+    <h2>What SkyDesk does</h2>
     <ul>
-      <li><a href="privacy/">Privacy Policy</a></li>
-      <li><a href="terms/">Terms of Service</a></li>
+      <li>On-page <strong>radar overlay</strong> that follows you while you browse, plus a dedicated <strong>full radar tab</strong>.</li>
+      <li>Live aircraft positions from public ADS-B data, with <strong>callsign, altitude, speed, and aircraft type</strong> tags.</li>
+      <li><strong>Flight routes</strong> (origin and destination) and flight/tail tracking on a world map.</li>
+      <li><strong>Airport information</strong>: runways, Class B/C airspace, ground mode, and airport markers.</li>
+      <li>Optional weather, terrain, and water layers, emergency squawk highlighting, and coordinate/location centering.</li>
     </ul>
+
+    <h2>Pricing</h2>
+    <div class="price">
+      <p class="amount">SkyDesk Pro — $2.99 / month or $24.99 / year (7-day free trial)</p>
+      <p>
+        Every install starts with a <strong>7-day free trial</strong> of all Pro features. After the
+        trial, SkyDesk Pro is a recurring subscription — <strong>$2.99/month</strong> or
+        <strong>$24.99/year</strong> (annual saves about 30%) — billed through ExtensionPay
+        (Stripe-hosted Checkout).
+      </p>
+    </div>
+    <p>
+      <strong>Cancellation &amp; refunds:</strong> Cancel anytime; Pro access continues through the end
+      of the paid period. Contact us for refund requests.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Questions, billing, or refund requests:
+      <a href="mailto:skydeskchrome@gmail.com">skydeskchrome@gmail.com</a>
+    </p>
+
+    <div class="links">
+      <ul>
+        <li><a href="privacy/">Privacy Policy</a></li>
+        <li><a href="terms/">Terms of Service</a></li>
+      </ul>
+    </div>
   </main>
 </body>
 </html>
