@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SkyDesk — Live Flight Radar Chrome Extension</title>
+  <title>SkyDesk — Live Flight Radar Browser Extension</title>
   <style>
     :root { color-scheme: dark; }
     body {
@@ -25,6 +25,18 @@
     .price { background: #0e1c12; border: 1px solid #1a3a24; padding: 14px 16px; border-radius: 6px; margin: 16px 0; }
     .price .amount { color: #eafff0; font-size: 20px; font-weight: 600; }
     .links { margin-top: 24px; }
+    .cta {
+      display: inline-block;
+      margin: 20px 0 8px;
+      padding: 12px 20px;
+      background: #7dffa6;
+      color: #060d08;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+    .cta:hover { background: #9cffb8; }
+    .cta-sub { color: #6f9a7c; font-size: 13px; margin: 0; }
   </style>
 </head>
 <body>
@@ -32,8 +44,18 @@
     <h1>SkyDesk</h1>
     <p class="date">Live aircraft / ADS-B flight radar for your browser. Entertainment and plane spotting only — not for flight planning, navigation, or operational use.</p>
 
+    <p>
+      <a
+        class="cta"
+        id="install-skydesk"
+        href="https://chromewebstore.google.com/detail/skydesk/bebpoadgmffalooplgaloncgblhblbkc"
+        rel="noopener"
+      >Add SkyDesk to Google Chrome&trade;</a>
+    </p>
+    <p class="cta-sub">Free airport radar forever. Pro features include a 7-day free trial.</p>
+
     <p class="notice">
-      <strong>SkyDesk</strong> is a Chrome browser extension that shows live aircraft (ADS-B)
+      <strong>SkyDesk</strong> is a browser extension for Google Chrome&trade; that shows live aircraft (ADS-B)
       flight radar right on the page you are viewing. It provides an on-page corner overlay plus a
       full radar tab, displaying real-time plane blips with callsign, altitude, speed, aircraft type,
       flight routes (origin/destination), and nearby airport information.
@@ -75,6 +97,12 @@
         <li><a href="terms/">Terms of Service</a></li>
       </ul>
     </div>
+
+    <p class="date">
+      Google Chrome is a trademark of Google LLC. SkyDesk is an independent product and is not
+      affiliated with, endorsed by, or sponsored by Google. Use of the Google Chrome name is for
+      compatibility reference only.
+    </p>
   </main>
 </body>
 </html>
