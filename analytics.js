@@ -43,6 +43,17 @@
     var installBtn = document.getElementById("install-skydesk");
     if (!installBtn) return;
 
+    // Pass ad attribution (UTM / gclid) through to the Web Store listing URL
+    var pageParams = new URLSearchParams(window.location.search);
+    var passKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid"];
+    try {
+      var storeUrl = new URL(installBtn.href);
+      passKeys.forEach(function (key) {
+        if (pageParams.has(key)) storeUrl.searchParams.set(key, pageParams.get(key));
+      });
+      installBtn.href = storeUrl.toString();
+    } catch (_) {}
+
     installBtn.addEventListener("click", function () {
       gtag("event", "click_install", {
         event_category: "engagement",
