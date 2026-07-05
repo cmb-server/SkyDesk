@@ -25,12 +25,34 @@
     .price { background: #0e1c12; border: 1px solid #1a3a24; padding: 14px 16px; border-radius: 6px; margin: 16px 0; }
     .price .amount { color: #eafff0; font-size: 20px; font-weight: 600; }
     .links { margin-top: 24px; }
+    .cta {
+      display: inline-block;
+      margin: 20px 0 8px;
+      padding: 12px 20px;
+      background: #7dffa6;
+      color: #060d08;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+    .cta:hover { background: #9cffb8; }
+    .cta-sub { color: #6f9a7c; font-size: 13px; margin: 0; }
   </style>
 </head>
 <body>
   <main>
     <h1>SkyDesk</h1>
     <p class="date">Live aircraft / ADS-B flight radar for your browser. Entertainment and plane spotting only — not for flight planning, navigation, or operational use.</p>
+
+    <p>
+      <a
+        class="cta"
+        id="install-skydesk"
+        href="https://chromewebstore.google.com/detail/skydesk/bebpoadgmffalooplgaloncgblhblbkc"
+        rel="noopener"
+      >Add SkyDesk to Google Chrome&trade;</a>
+    </p>
+    <p class="cta-sub">Free airport radar forever. Pro features include a 7-day free trial.</p>
 
     <p class="notice">
       <strong>SkyDesk</strong> is a browser extension for Google Chrome&trade; that shows live aircraft (ADS-B)
@@ -50,9 +72,9 @@
 
     <h2>Pricing</h2>
     <div class="price">
-      <p class="amount">SkyDesk Pro — $2.99 / month or $24.99 / year (3-day free trial)</p>
+      <p class="amount">SkyDesk Pro — $2.99 / month or $24.99 / year (7-day free trial)</p>
       <p>
-        Every install starts with a <strong>3-day free trial</strong> of all Pro features. After the
+        Every install starts with a <strong>7-day free trial</strong> of all Pro features. After the
         trial, SkyDesk Pro is a recurring subscription — <strong>$2.99/month</strong> or
         <strong>$24.99/year</strong> (annual saves about 30%) — billed through ExtensionPay
         (Stripe-hosted Checkout).
