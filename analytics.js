@@ -1,6 +1,6 @@
 (function () {
   // Replace with your GA4 Measurement ID (Admin → Data streams → Web → Measurement ID)
-  var GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
+  var GA_MEASUREMENT_ID = "G-B9YH62KXCV";
 
   if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID.indexOf("XXXX") !== -1) {
     return;
