@@ -12,7 +12,7 @@
 // 5. Import those key events into Google Ads as conversions
 
 const SKAnalytics = (() => {
-  const MEASUREMENT_ID = "G-B9YH62KXCV";
+  const MEASUREMENT_ID = "G-9PNH7J36M4";
   const API_SECRET = "YOUR_API_SECRET";
   const CLIENT_ID_KEY = "skGaClientId";
 

@@ -1,24 +1,6 @@
 (function () {
-  // Replace with your GA4 Measurement ID (Admin → Data streams → Web → Measurement ID)
-  var GA_MEASUREMENT_ID = "G-B9YH62KXCV";
-
-  if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID.indexOf("XXXX") !== -1) {
-    return;
-  }
-
-  var script = document.createElement("script");
-  script.async = true;
-  script.src =
-    "https://www.googletagmanager.com/gtag/js?id=" +
-    encodeURIComponent(GA_MEASUREMENT_ID);
-  document.head.appendChild(script);
-
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag() {
-    window.dataLayer.push(arguments);
-  };
-  gtag("js", new Date());
-  gtag("config", GA_MEASUREMENT_ID, { anonymize_ip: true });
+  // Base gtag is loaded inline in index.html so Google Ads can verify the tag.
+  // This file only wires the install button + click_install conversion event.
 
   function utmParams() {
     var params = new URLSearchParams(window.location.search);
@@ -55,7 +37,8 @@
     } catch (_) {}
 
     installBtn.addEventListener("click", function () {
-      gtag("event", "click_install", {
+      if (typeof window.gtag !== "function") return;
+      window.gtag("event", "click_install", {
         event_category: "engagement",
         link_url: installBtn.href,
         outbound: true,
