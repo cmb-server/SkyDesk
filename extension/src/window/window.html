@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SkyDesk</title>
+  <link rel="stylesheet" href="window.css" />
+</head>
+<body>
+  <canvas id="hud"></canvas>
+
+  <aside id="panel">
+    <header>
+      <div class="panel-header-row">
+        <div>
+          <h1>SkyDesk</h1>
+          <p id="airportLabel">—</p>
+        </div>
+        <button type="button" id="settingsPanelCollapse" class="panel-edge-btn" title="Hide settings">Hide settings</button>
+      </div>
+    </header>
+
+    <div class="panel-grid">
+      <fieldset class="modes span-full">
+        <legend>Mode</legend>
+        <div class="mode-radios">
+          <label><input type="radio" name="centerMode" value="airport" checked /> Watch an airport</label>
+          <label><input type="radio" name="centerMode" value="coords" /> Watch a latitude / longitude</label>
+          <label><input type="radio" name="centerMode" value="track" /> Track a flight</label>
+        </div>
+
+        <div id="airportBlock" class="loc-block">
+          <label class="field">
+            <span>Airport</span>
+            <input type="text" id="airportQ" placeholder="Search ICAO, IATA or name…" autocomplete="off" spellcheck="false" />
+            <ul id="suggest" class="suggest hidden"></ul>
+          </label>
+        </div>
+
+        <div id="coordsBlock" class="loc-block hidden">
+          <p id="coordsGateHint" class="sub-hint hidden">Subscribe to watch planes at your location. 7-day free trial includes location watch.</p>
+          <label class="field">
+            <span>Latitude</span>
+            <input type="text" id="centerLat" placeholder="42.2138" autocomplete="off" />
+          </label>
+          <label class="field">
+            <span>Longitude</span>
+            <input type="text" id="centerLon" placeholder="-83.3538" autocomplete="off" />
+          </label>
+          <label class="field">
+            <span>Label</span>
+            <input type="text" id="centerLabel" placeholder="Home" autocomplete="off" />
+          </label>
+          <button type="button" id="geoBtn" class="ghost">Use my location</button>
+        </div>
+
+        <div id="trackBlock" class="loc-block hidden gated-field">
+          <p id="trackGateHint" class="sub-hint hidden">Requires an active trial or subscription.</p>
+          <div class="mode-radios">
+            <label><input type="radio" name="trackKind" value="flight" checked /> Flight number</label>
+            <label><input type="radio" name="trackKind" value="tail" /> Tail number</label>
+          </div>
+          <div id="trackFlightField" class="track-field">
+            <label class="field">
+              <span>Flight number</span>
+              <input type="text" id="flightInput" placeholder="Flight number (e.g. DAL123)" spellcheck="false" autocomplete="off" />
+            </label>
+          </div>
+          <div id="trackTailField" class="track-field hidden">
+            <label class="field">
+              <span>Tail number</span>
+              <input type="text" id="tailInput" placeholder="Tail number (e.g. N12345, G-ABCD)" spellcheck="false" autocomplete="off" />
+            </label>
+          </div>
+          <div class="track-actions">
+            <button type="button" id="trackBtn" class="ghost">Track</button>
+            <button type="button" id="clearTrack" class="ghost hidden">Stop</button>
+          </div>
+          <p id="trackStatus" class="status"></p>
+          <label class="slider">
+            <span>Tracker opacity <em id="trackerOpacityVal">75%</em></span>
+            <input type="range" id="trackerOpacity" min="20" max="100" step="5" />
+          </label>
+          <p class="sub-hint">Full-screen map: route, live position and recorded trail over outlined countries / states.</p>
+        </div>
+      </fieldset>
+
+      <fieldset class="modes">
+        <legend>Traffic</legend>
+        <label><input type="checkbox" id="hideUnder80Kts" /> Hide traffic under 80 kt</label>
+        <div class="toggles">
+          <label><input type="checkbox" id="showAirlines" checked /> Airliners</label>
+          <label><input type="checkbox" id="showMilitary" checked /> Military</label>
+          <label><input type="checkbox" id="showGa" checked /> General aviation</label>
+        </div>
+        <label><input type="checkbox" id="showEmergency" /> Emergency squawk alerts <small>7500 · 7600 · 7700</small></label>
+      </fieldset>
+
+      <fieldset class="modes">
+        <legend>Aircraft Tags</legend>
+        <div class="toggles">
+          <label><input type="checkbox" id="showAltitude" /> Altitude</label>
+          <label><input type="checkbox" id="showSpeed" /> Ground speed</label>
+          <label><input type="checkbox" id="showType" /> Aircraft type</label>
+        </div>
+        <label class="slider">
+          <span>Tag text size <em id="tagFontVal">9px</em></span>
+          <input type="range" id="tagFontSize" min="7" max="14" step="1" />
+        </label>
+        <label><input type="checkbox" id="showTagBg" checked /> Tag background</label>
+      </fieldset>
+
+      <fieldset class="modes">
+        <legend>Radar</legend>
+        <label><input type="checkbox" id="showRangeRings" /> Range rings</label>
+        <label><input type="checkbox" id="showOuterRing" /> Outer range ring</label>
+        <label><input type="checkbox" id="showRunways" /> Runways</label>
+        <label><input type="checkbox" id="showAirportDot" /> Airport marker <small>(center dot)</small></label>
+        <div id="homeMarkerBlock">
+          <label><input type="checkbox" id="showHomeMarker" /> Reference point <small id="homeMarkerHint">(watch center)</small></label>
+          <label><input type="checkbox" id="showOverheadHighlight" /> Highlight overhead traffic <small>(closest within 3 nm)</small></label>
+          <label class="color-row">
+            <span>Reference point color</span>
+            <input type="color" id="homeMarkerColor" />
+          </label>
+          <label class="slider">
+            <span>Reference point opacity <em id="homeMarkerOpacityVal">90%</em></span>
+            <input type="range" id="homeMarkerOpacity" min="0" max="100" step="5" />
+          </label>
+        </div>
+        <label class="slider">
+          <span>Rings &amp; compass opacity <em id="ringOpacityVal">100%</em></span>
+          <input type="range" id="ringOpacity" min="0" max="100" step="5" />
+        </label>
+        <label><input type="checkbox" id="showSweep" /> Sweep animation</label>
+        <label class="slider">
+          <span>Range <em id="rangeVal">40 nm</em></span>
+          <input type="range" id="rangeNm" min="5" max="100" step="5" />
+        </label>
+        <label class="slider">
+          <span>Radar opacity <em id="opacityVal">55%</em></span>
+          <input type="range" id="opacity" min="20" max="100" step="5" />
+        </label>
+        <label class="slider">
+          <span>Rotation <em id="headingVal">N (0°)</em></span>
+          <input type="range" id="heading" min="0" max="359" step="15" />
+          <small>Top of radar = the direction you're facing</small>
+        </label>
+        <label class="slider">
+          <span>Refresh interval <em id="refreshVal">2s</em></span>
+          <input type="range" id="refreshSec" min="1" max="15" step="1" />
+        </label>
+      </fieldset>
+
+      <fieldset class="modes gated-field">
+        <legend>Map Layers</legend>
+        <p class="sub-hint">Weather, terrain, and water layers require an active trial or subscription.</p>
+        <label><input type="checkbox" id="showWeather" /> Weather radar <small>(RainViewer)</small></label>
+        <label class="slider">
+          <span>Weather opacity <em id="weatherOpacityVal">70%</em></span>
+          <input type="range" id="weatherOpacity" min="0" max="100" step="5" />
+        </label>
+        <label><input type="checkbox" id="showTerrain" /> Terrain</label>
+        <label class="slider">
+          <span>Terrain opacity <em id="terrainOpacityVal">60%</em></span>
+          <input type="range" id="terrainOpacity" min="0" max="100" step="5" />
+        </label>
+        <label><input type="checkbox" id="showWater" /> Water <small>(oceans &amp; lakes)</small></label>
+        <label class="slider">
+          <span>Water opacity <em id="waterOpacityVal">70%</em></span>
+          <input type="range" id="waterOpacity" min="0" max="100" step="5" />
+        </label>
+      </fieldset>
+
+      <fieldset class="modes">
+        <legend>Colors</legend>
+        <label class="color-row"><span>Aircraft</span><input type="color" id="colorPlane" /></label>
+        <label class="color-row"><span>Military</span><input type="color" id="colorMilitary" /></label>
+        <label class="color-row"><span>Aircraft tag</span><input type="color" id="colorTag" /></label>
+        <label class="color-row"><span>Tag background</span><input type="color" id="colorTagBg" /></label>
+        <label class="color-row"><span>Airport</span><input type="color" id="colorAirport" /></label>
+        <label class="color-row"><span>Rings &amp; compass</span><input type="color" id="colorRings" /></label>
+        <label class="color-row"><span>Runways</span><input type="color" id="colorRunway" /></label>
+      </fieldset>
+
+      <fieldset class="modes">
+        <legend>Blips</legend>
+        <label><input type="radio" name="blipStyle" value="plane" checked /> Aircraft icons</label>
+        <label><input type="radio" name="blipStyle" value="dot" /> Dots</label>
+      </fieldset>
+
+      <fieldset class="modes gated-field">
+        <legend>Advanced</legend>
+        <label><input type="checkbox" id="proFlightTrack" /> Flight path tracking <small>Shift-click an aircraft</small></label>
+        <label id="groundModeRow"><input type="checkbox" id="proGroundMode" /> Airport ground mode <small>FAA + OSM · ≤ 150 kt</small></label>
+        <label class="slider">
+          <span>Ground range <em id="groundRangeVal">2.5 nm</em></span>
+          <input type="range" id="groundRangeNm" min="1" max="6" step="0.5" />
+        </label>
+      </fieldset>
+
+      <fieldset class="modes span-full">
+        <legend>Subscription</legend>
+        <p id="subStatus" class="status">Checking subscription…</p>
+        <button type="button" id="trialBtn" class="ghost">Start 7-day free trial</button>
+        <button type="button" id="subBtn" class="ghost">Subscribe · $2.99/mo or $24.99/yr</button>
+      </fieldset>
+    </div>
+
+    <p id="status" class="status">Scanning…</p>
+    <p id="selected" class="selected hidden"></p>
+    <p class="attribution">Terrain © Esri · Weather © RainViewer · Data ADS-B community</p>
+    <p class="disclaimer">For entertainment only — not for flight planning, navigation, or operational use. ADS-B data may be delayed or incomplete.</p>
+    <p class="legal"><a id="privacyLink" href="#">Privacy</a> · <a id="termsLink" href="#">Terms</a></p>
+  </aside>
+
+  <button type="button" id="settingsPanelExpand" class="panel-edge-btn panel-expand-btn hidden" title="Show settings">Show settings</button>
+
+  <script src="../lib/geo.js"></script>
+  <script src="../lib/center.js"></script>
+  <script src="../lib/layers.js"></script>
+  <script src="../lib/radar.js"></script>
+  <script src="../lib/airports.js"></script>
+  <script src="../lib/worldmap.js"></script>
+  <script src="../lib/entitlement.js"></script>
+  <script src="../lib/pro.js"></script>
+  <script src="window.js"></script>
+</body>
+</html>

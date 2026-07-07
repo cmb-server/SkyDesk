@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SkyDesk</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <h1>SkyDesk</h1>
+    <p class="sub">Live ATC-style radar on any page</p>
+  </header>
+
+  <div id="welcomeBox" class="welcome-box hidden">
+    <p><strong>First time?</strong> Open any normal website (not Chrome&apos;s New Tab) and SkyDesk will walk you through setup — including a <strong>7-day free trial</strong> (email only, no card) for full-background radar.</p>
+  </div>
+
+  <p id="tabWarn" class="warn" hidden></p>
+
+  <label class="row">
+    <span>Radar on pages</span>
+    <input type="checkbox" id="overlay" checked />
+  </label>
+
+  <p class="hint">All settings are in the <strong>SkyDesk ▾</strong> menu on the widget. In corner mode, drag <strong>⋮⋮</strong> or the radar to reposition — your spot is remembered.</p>
+
+  <button id="openWindow" class="ghost">Open full radar + flight tracker</button>
+  <button id="testPage" class="ghost">Open a test page</button>
+
+  <p class="legal"><a id="privacyLink" href="#">Privacy</a> · <a id="termsLink" href="#">Terms</a></p>
+
+  <script src="popup.js"></script>
+</body>
+</html>
