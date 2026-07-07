@@ -1,0 +1,78 @@
+{
+  "manifest_version": 3,
+  "name": "SkyDesk",
+  "version": "1.0.4",
+  "description": "Classic ATC-style flight radar on every page — home location, Class B/C airports, plane blips, live traffic.",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": [
+    "https://api.adsb.lol/*",
+    "https://adsb.lol/*",
+    "https://opensky-network.org/*",
+    "https://opendata.adsb.fi/*",
+    "https://api.airplanes.live/*",
+    "https://raw.githubusercontent.com/*",
+    "https://overpass-api.de/*",
+    "https://aviationweather.gov/*",
+    "https://hexdb.io/*",
+    "https://api.rainviewer.com/*",
+    "https://*.rainviewer.com/*",
+    "https://extensionpay.com/*",
+    "https://server.arcgisonline.com/*",
+    "https://www.google-analytics.com/*"
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://extensionpay.com/*"],
+      "js": ["src/lib/ExtPay.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "exclude_matches": [
+        "*://chrome.google.com/*",
+        "*://chromewebstore.google.com/*",
+        "*://extensionpay.com/*"
+      ],
+      "js": [
+        "src/lib/geo.js",
+        "src/lib/center.js",
+        "src/lib/airports.js",
+        "src/lib/entitlement.js",
+        "src/lib/layers.js",
+        "src/lib/radar.js",
+        "src/lib/worldmap.js",
+        "src/overlay/overlay.js"
+      ],
+      "css": ["src/overlay/overlay.css"],
+      "run_at": "document_idle",
+      "all_frames": false,
+      "match_origin_as_fallback": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "src/data/world-countries.geo.json",
+        "src/data/us-states.geo.json",
+        "src/data/water.geo.json"
+      ],
+      "matches": ["http://*/*", "https://*/*"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
