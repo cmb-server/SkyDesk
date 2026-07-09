@@ -137,10 +137,12 @@
     <ul>
       <li><code>storage</code> — save preferences locally (above).</li>
       <li><code>tabs</code> — open the full radar tab, legal pages, and apply settings to open pages.</li>
+      <li><code>scripting</code> — inject the radar overlay into pages only when radar is enabled (a tiny boot script decides; the full overlay is not loaded on every page by default).</li>
+      <li>Host access to <code>http://*/*</code> and <code>https://*/*</code> — required so the overlay can be injected on normal webpages you visit (Chrome Web Store and ExtensionPay are excluded).</li>
       <li>Host access to the data providers listed above — fetch radar, route, weather, and airport data.</li>
     </ul>
     <p>
-      SkyDesk's content script renders the radar on pages you visit but
+      SkyDesk's content script / injected overlay renders the radar on pages you visit but
       <strong>does not</strong> read page content, form data, or browsing history.
     </p>
 
